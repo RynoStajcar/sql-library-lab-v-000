@@ -31,7 +31,17 @@ ON Series.subgenre_id = Subgenres.id
 end
 
 def select_series_title_with_most_human_characters
-  "Write your SQL query here"
+  "SELECT Series.title
+FROM Series
+JOIN Books
+ON Series.id = Books.series_id
+JOIN Character_books
+ON Character_books.book_id = Books.id
+JOIN Characters
+ON Characters.id = Character_books.character_id
+WHERE Characters.species = 'human'
+GROUP BY Series.title
+ORDER BY COUNT(Characters.species) DESC LIMIT 1"
 end
 
 def select_character_names_and_number_of_books_they_are_in
