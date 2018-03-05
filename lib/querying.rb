@@ -21,9 +21,10 @@ ORDER BY COUNT(Characters.species) DESC LIMIT 1"
 end
 
 def select_name_and_series_subgenres_of_authors
-  "SELECT Authors.name, Subgenres.name
-FROM Authors, Subgenres
-GROUP BY Authors.name"
+  "SELECT Authors.name, Series.title
+FROM Authors
+LEFT JOIN Series
+ON Series.author_id = Authors.ide"
 end
 
 def select_series_title_with_most_human_characters
